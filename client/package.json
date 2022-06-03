@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.24.1",
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
     "formik": "^2.2.9",
     "moment": "^2.24.0",
     "react": "^16.8.6",

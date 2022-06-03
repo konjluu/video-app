@@ -3,6 +3,7 @@ import { FaCode } from "react-icons/fa";
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
+import { USER_SERVER } from '../../Config';
 const { Title } = Typography;
 const { Meta } = Card;
 
@@ -13,7 +14,7 @@ function SubscriptionPage() {
     let variable = { userFrom: localStorage.getItem('userId') }
 
     useEffect(() => {
-        axios.post('/api/video/getSubscriptionVideos', variable)
+        axios.post(`${USER_SERVER}/video/getSubscriptionVideos`, variable)
             .then(response => {
                 if (response.data.success) {
                     setVideos(response.data.videos)

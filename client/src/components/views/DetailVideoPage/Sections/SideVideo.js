@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { USER_SERVER } from '../../../Config';
 function SideVideo() {
 
     const [SideVideos, setSideVideos] = useState([])
 
     useEffect(() => {
-        axios.get('/api/video/getVideos')
+        axios.get(`${USER_SERVER}/video/getVideos`)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.videos)

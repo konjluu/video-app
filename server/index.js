@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
+const cors = require("cors");
 const config = require("./config/key");
 
 const mongoose = require("mongoose");
@@ -14,6 +14,9 @@ const connect = mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUn
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors({
+  origin:["http://konjluus-macbook-pro.local:3000"]
+}))
 
 
 app.use('/api/users', require('./routes/users'));

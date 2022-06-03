@@ -3,6 +3,7 @@ import { FaCode } from "react-icons/fa";
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
+import { USER_SERVER } from '../../Config';
 const { Title } = Typography;
 const { Meta } = Card;
 function LandingPage() {
@@ -10,7 +11,7 @@ function LandingPage() {
     const [Videos, setVideos] = useState([])
 
     useEffect(() => {
-        axios.get('/api/video/getVideos')
+        axios.get(`${USER_SERVER}/video/getVideos`)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.videos)

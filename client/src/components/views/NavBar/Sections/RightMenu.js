@@ -11,7 +11,7 @@ function RightMenu(props) {
   const user = useSelector(state => state.user)
 
   const logoutHandler = () => {
-    axios.get(`${USER_SERVER}/logout`).then(response => {
+    axios.get(`${USER_SERVER}/users/logout`).then(response => {
       if (response.status === 200) {
         props.history.push("/login");
       } else {

@@ -3,6 +3,7 @@ import { Typography, Button, Form, message, Input, Icon } from 'antd';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { useSelector } from "react-redux";
+import { USER_SERVER } from '../../Config';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -75,7 +76,7 @@ function UploadVideoPage(props) {
             thumbnail: Thumbnail
         }
 
-        axios.post('/api/video/uploadVideo', variables)
+        axios.post(`${USER_SERVER}/video/uploadVideo`, variables)
             .then(response => {
                 if (response.data.success) {
                     alert('video Uploaded Successfully')
@@ -88,6 +89,9 @@ function UploadVideoPage(props) {
     }
 
     const onDrop = (files) => {
+        console.log("files-",files)
+        
+
 
         let formData = new FormData();
         const config = {
@@ -96,7 +100,7 @@ function UploadVideoPage(props) {
         console.log(files)
         formData.append("file", files[0])
 
-        axios.post('/api/video/uploadfiles', formData, config)
+        axios.post(`${USER_SERVER}/video/uploadfiles`, formData, config)
             .then(response => {
                 if (response.data.success) {
 
@@ -108,7 +112,7 @@ function UploadVideoPage(props) {
 
                     //gerenate thumbnail with this filepath ! 
 
-                    axios.post('/api/video/thumbnail', variable)
+                    axios.post(`${USER_SERVER}/video/thumbnail`, variable)
                         .then(response => {
                             if (response.data.success) {
                                 setDuration(response.data.fileDuration)
@@ -123,6 +127,7 @@ function UploadVideoPage(props) {
                     alert('failed to save the video in server')
                 }
             })
+
 
     }
 

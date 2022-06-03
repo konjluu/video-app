@@ -5,6 +5,8 @@ import SideVideo from './Sections/SideVideo';
 import Subscriber from './Sections/Subscriber';
 import Comments from './Sections/Comments'
 import LikeDislikes from './Sections/LikeDislikes';
+import { USER_SERVER } from '../../Config';
+
 function DetailVideoPage(props) {
 
 
@@ -17,7 +19,7 @@ function DetailVideoPage(props) {
     }
 
     useEffect(() => {
-        axios.post('/api/video/getVideo', videoVariable)
+        axios.post(`${USER_SERVER}/video/getVideo`, videoVariable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.video)
@@ -27,7 +29,7 @@ function DetailVideoPage(props) {
                 }
             })
 
-        axios.post('/api/comment/getComments', videoVariable)
+        axios.post(`${USER_SERVER}/comment/getComments`, videoVariable)
             .then(response => {
                 if (response.data.success) {
                     console.log('response.data.comments',response.data.comments)
